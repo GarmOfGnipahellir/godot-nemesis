@@ -17,7 +17,7 @@ func _ready():
 
 func _on_store_changed(name, state):
 	print(name, ': prev -> ', prev_state[name])
-	print(name, ': now  -> ', state)
+	print(name, ': now  -> ', state, '\n')
 
 	match name:
 		'ship':
@@ -52,4 +52,4 @@ func prepare_game():
 	start_game()
 
 func start_game():
-	Store.dispatch(Actions.player_move(0, 1))
+	pass
