@@ -1,0 +1,8 @@
+extends Node
+
+const GAME_SET_START_TIME = 'GAME_SET_START_TIME'
+
+const PLAYER_SPAWN = 'PLAYER_SPAWN'
+const PLAYER_MOVE = 'PLAYER_MOVE'
+
+const SHIP_LOAD = 'SHIP_LOAD'

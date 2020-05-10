@@ -1,0 +1,55 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "CorridorResource",
+"language": "GDScript",
+"path": "res://src/resources/corridor_resource.gd"
+}, {
+"base": "Resource",
+"class": "RoomResource",
+"language": "GDScript",
+"path": "res://src/resources/room_resource.gd"
+}, {
+"base": "Resource",
+"class": "ShipResource",
+"language": "GDScript",
+"path": "res://src/resources/ship_resource.gd"
+} ]
+_global_script_class_icons={
+"CorridorResource": "",
+"RoomResource": "",
+"ShipResource": ""
+}
+
+[application]
+
+config/name="GodotNemesis"
+run/main_scene="res://default_scene.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Store="*res://src/redux/store.gd"
+ActionTypes="*res://src/redux/action_types.gd"
+Actions="*res://src/redux/actions.gd"
+Reducers="*res://src/redux/reducers.gd"
+DrawLine3d="*res://src/dev/draw_line_3d.gd"
+GameManager="*res://src/game_manager.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
+
+[rendering]
+
+quality/filters/msaa=4
+environment/default_environment="res://default_env.tres"
