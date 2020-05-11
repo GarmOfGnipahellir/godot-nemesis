@@ -5,9 +5,9 @@ func before_all():
 	yield_for(1.0)
 
 func test_network():
+	Store.dispatch(Actions.gui_set_name("Test Client"))
+
 	var peer = NetworkedMultiplayerENet.new()
 	if peer.create_client("127.0.0.1", 25565) != OK:
 		print("Couldn't connect to server.")
 	get_tree().network_peer = peer
-
-	Store.dispatch(Actions.gui_set_name("Test Client"))
