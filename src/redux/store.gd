@@ -7,26 +7,26 @@ signal state_changed(name, state)
 
 func create(reducers, callbacks = null):
 	for reducer in reducers:
-		var name = reducer['name']
+		var name = reducer["name"]
 		if not _state.has(name):
 			_state[name] = {}
 		if not _reducers.has(name):
-			_reducers[name] = funcref(reducer['instance'], name)
+			_reducers[name] = funcref(reducer["instance"], name)
 			var initial_state = _reducers[name].call_func(
 				_state[name],
-				{'type': null}
+				{"type": null}
 			)
 			_state[name] = initial_state
 
 	if callbacks != null:
 		for callback in callbacks:
-			subscribe(callback['instance'], callback['name'])
+			subscribe(callback["instance"], callback["name"])
 
 func subscribe(target, method):
-	connect('state_changed', target, method)
+	connect("state_changed", target, method)
 
 func unsubscribe(target, method):
-	disconnect('state_changed', target, method)
+	disconnect("state_changed", target, method)
 
 func dispatch(action):
 	for name in _reducers.keys():
@@ -34,10 +34,10 @@ func dispatch(action):
 		var next_state = _reducers[name].call_func(state, action)
 		if next_state == null:
 			_state.erase(name)
-			emit_signal('state_changed', name, null)
+			emit_signal("state_changed", name, null)
 		elif state != next_state:
 			_state[name] = next_state
-			emit_signal('state_changed', name, next_state)
+			emit_signal("state_changed", name, next_state)
 
 func get_state():
 	return _state
