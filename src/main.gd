@@ -8,6 +8,7 @@ signal ship_changed(state, prev_state)
 signal entities_changed(state, prev_state)
 
 func _ready():
+	# TODO should add a way to reset store for tests
 	Store.create([
 		{"name": "gui", "instance": Reducers},
 		{"name": "players", "instance": Reducers},

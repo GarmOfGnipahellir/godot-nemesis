@@ -14,4 +14,7 @@ func _physics_process(_dt: float):
 		if Input.is_action_just_pressed("select"):
 			var room: Spatial = result.collider.get_parent()
 			var room_id := room.get_index()
-			Store.dispatch(Actions.entity_move(controlled_entity, room_id))
+			rpc("player_move_entity", controlled_entity, room_id)
+
+remotesync func player_move_entity(entity: int, room_id: int):
+	Store.dispatch(Actions.entity_move(entity, room_id))
