@@ -1,9 +1,22 @@
 extends Node
 
-func game_set_start_time(time):
+func gui_set_name(name: String):
 	return {
-		"type": ActionTypes.GAME_SET_START_TIME,
-		"time": time,
+		"type": ActionTypes.GUI_SET_NAME,
+		"name": name,
+	}
+
+func player_connected(rpc_id: int, name: String):
+	return {
+		"type": ActionTypes.PLAYER_CONNECTED,
+		"rpc_id": rpc_id,
+		"name": name,
+	}
+
+func player_disconnected(rpc_id: int):
+	return {
+		"type": ActionTypes.PLAYER_DISCONNECTED,
+		"rpc_id": rpc_id,
 	}
 
 func player_spawn():
