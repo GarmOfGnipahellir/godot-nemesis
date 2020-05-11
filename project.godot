@@ -38,6 +38,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 Store="*res://src/redux/store.gd"
 ActionTypes="*res://src/redux/action_types.gd"
 Actions="*res://src/redux/actions.gd"

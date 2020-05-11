@@ -2,6 +2,7 @@ extends "res://addons/gut/test.gd"
 
 func before_all():
 	OS.execute("godot", ["-s", "test/server.gd"], false)
+	yield_for(1.0)
 
 func test_network():
 	var peer = NetworkedMultiplayerENet.new()
