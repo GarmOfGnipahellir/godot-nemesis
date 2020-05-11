@@ -8,6 +8,21 @@ func gui(state, action):
 			return next_state
 	return state
 
+func players(state, action):
+	match action.type:
+		ActionTypes.PLAYER_CONNECTED:
+			var next_state = Store.shallow_copy(state)
+			next_state[action.rpc_id] = {
+				"id": action.rpc_id,
+				"name": action.name
+			}
+			return next_state
+		ActionTypes.PLAYER_DISCONNECTED:
+			var next_state = Store.shallow_copy(state)
+			next_state.erase(action.rpc_id)
+			return next_state
+	return state
+
 func ship(state, action):
 	match action.type:
 		ActionTypes.SHIP_LOAD:
@@ -46,29 +61,21 @@ func ship(state, action):
 			return next_state
 	return state
 
-func players(state, action):
+func entities(state, action):
 	match action.type:
-		ActionTypes.PLAYER_CONNECTED:
-			var next_state = Store.shallow_copy(state)
-			var id = action.rpc_id
-			next_state[id] = {
-				"id": id,
-				"name": action.name
-			}
-			return next_state
-		ActionTypes.PLAYER_SPAWN:
+		ActionTypes.ENTITY_SPAWN:
 			var next_state = Store.shallow_copy(state)
 			var index = len(next_state)
 			next_state[index] = {
 				"room": 0
 			}
 			return next_state
-		ActionTypes.PLAYER_MOVE:
-			var player_state = Store.shallow_copy(state[action.player])
+		ActionTypes.ENTITY_MOVE:
+			var entity_state = Store.shallow_copy(state[action.entity])
 			var ship_state = Store.get_state().ship
 
 			var can_move = false
-			var current_room = ship_state.rooms[player_state.room]
+			var current_room = ship_state.rooms[entity_state.room]
 			for corridor_id in current_room.connected_corridors:
 				var corridor = ship_state.corridors[corridor_id]
 				for corridor_room_id in corridor.connected_rooms:
@@ -79,9 +86,9 @@ func players(state, action):
 					break
 
 			if can_move:
-				player_state.room = action.room
+				entity_state.room = action.room
 			
 			var next_state = Store.shallow_copy(state)
-			next_state[action.player] = player_state
+			next_state[action.entity] = entity_state
 			return next_state
 	return state

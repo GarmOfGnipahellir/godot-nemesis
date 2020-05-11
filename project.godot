@@ -32,8 +32,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GodotNemesis"
-run/main_scene="res://default_scene.tscn"
+config/name="Nemesis"
+run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -43,7 +43,12 @@ ActionTypes="*res://src/redux/action_types.gd"
 Actions="*res://src/redux/actions.gd"
 Reducers="*res://src/redux/reducers.gd"
 DrawLine3d="*res://src/dev/draw_line_3d.gd"
+Main="*res://src/main.gd"
 GameManager="*res://src/game_manager.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [editor_plugins]
 
