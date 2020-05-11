@@ -25,9 +25,10 @@ func ship_load(resource: String):
 		"resource": resource,
 	}
 
-func entity_spawn():
+func entity_spawn(controller: int):
 	return {
 		"type": ActionTypes.ENTITY_SPAWN,
+		"controller": controller,
 	}
 
 func entity_move(entity: int, room: int):

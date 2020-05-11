@@ -3,6 +3,8 @@ extends Node
 var _name_popup_callback
 
 func start_single_player():
+	Store.dispatch(Actions.player_connected(1, "Local"))
+	
 	if get_tree().change_scene("res://scenes/default_scene.tscn") != OK:
 		print("Couldn't load scene")
 

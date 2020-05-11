@@ -3,7 +3,8 @@
 [ext_resource path="res://src/gui/lobby.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
-anchor_right = 1.0
+anchor_left = -0.000976563
+anchor_right = 0.999023
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,4 +59,5 @@ margin_right = 222.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Cancel"
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="Lobby" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="Lobby" method="_on_CancelButton_pressed"]

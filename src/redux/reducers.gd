@@ -67,7 +67,8 @@ func entities(state, action):
 			var next_state = Store.shallow_copy(state)
 			var index = len(next_state)
 			next_state[index] = {
-				"room": 0
+				"controller": action.controller,
+				"room": 0,
 			}
 			return next_state
 		ActionTypes.ENTITY_MOVE:

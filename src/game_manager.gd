@@ -1,10 +1,17 @@
 extends Node
 
-const Player = preload("player.gd")
 const Ship = preload("ship.gd")
+const Player = preload("player.gd")
+const Entity = preload("entity.gd")
 
+var player: Player
 var ship: Ship
-var players := []
+var entities := []
+
+func create_player() -> Player:
+	player = Player.new()
+	get_tree().get_root().add_child(player)
+	return player
 
 func load_ship(resource: String) -> Ship:
 	var scene = load(resource)
@@ -12,9 +19,8 @@ func load_ship(resource: String) -> Ship:
 	get_tree().get_root().add_child(ship)
 	return ship
 
-func spawn_player() -> Player:
-	var new_player = Player.new()
-	get_tree().get_root().add_child(new_player)
-	new_player.add_to_group("players")
-	players.push_back(new_player)
-	return new_player
+func spawn_entity() -> Entity:
+	var new_entity = Entity.new()
+	get_tree().get_root().add_child(new_entity)
+	entities.push_back(new_entity)
+	return new_entity

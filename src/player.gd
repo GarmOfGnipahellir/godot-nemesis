@@ -1,7 +1,6 @@
 extends Spatial
 
-func _process(_dt: float):
-	DrawLine3d.DrawCube(Vector3(global_transform.origin), 0.1,  Color(0, 1, 0))
+var controlled_entity: int
 
 func _physics_process(_dt: float):
 	var space_state = get_world().direct_space_state
@@ -15,4 +14,4 @@ func _physics_process(_dt: float):
 		if Input.is_action_just_pressed("select"):
 			var room: Spatial = result.collider.get_parent()
 			var room_id := room.get_index()
-			Store.dispatch(Actions.player_move(0, room_id))
+			Store.dispatch(Actions.entity_move(controlled_entity, room_id))
