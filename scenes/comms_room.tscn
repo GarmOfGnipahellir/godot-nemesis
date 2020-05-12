@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/room_comms_room.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="Comms_Room" type="Spatial"]
+script = ExtResource( 1 )
+item_type = 2
+has_computer = true
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
