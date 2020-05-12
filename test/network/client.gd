@@ -13,5 +13,6 @@ func _init():
 	network_peer = peer
 
 	Store.dispatch(Actions.gui_set_name("Test Client"))
-	
+	Store.dispatch(Actions.player_connected(get_network_unique_id(), "Test Client"))
+
 	change_scene("res://test/network/scene.tscn")
