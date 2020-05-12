@@ -3,6 +3,9 @@ extends Spatial
 var controlled_entity: int
 
 func _physics_process(_dt: float):
+	if not is_network_master():
+		return
+	
 	var space_state = get_world().direct_space_state
 	var camera = get_viewport().get_camera()
 	var point = get_viewport().get_mouse_position()
@@ -14,4 +17,5 @@ func _physics_process(_dt: float):
 		if Input.is_action_just_pressed("select"):
 			var room: Spatial = result.collider.get_parent()
 			var room_id := room.get_index()
-			Store.rpc_dispatch(Actions.entity_move(controlled_entity, room_id))
+			
+			Server.dispatch(Actions.entity_move(controlled_entity, room_id))

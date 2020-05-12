@@ -9,25 +9,91 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
-"class": "CorridorResource",
+"base": "Reference",
+"class": "NakamaAPI",
 "language": "GDScript",
-"path": "res://src/resources/corridor_resource.gd"
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaAPI.gd"
 }, {
-"base": "Resource",
-"class": "RoomResource",
+"base": "Reference",
+"class": "NakamaAsyncResult",
 "language": "GDScript",
-"path": "res://src/resources/room_resource.gd"
+"path": "res://addons/com.heroiclabs.nakama/utils/NakamaAsyncResult.gd"
 }, {
-"base": "Resource",
-"class": "ShipResource",
+"base": "Reference",
+"class": "NakamaClient",
 "language": "GDScript",
-"path": "res://src/resources/ship_resource.gd"
+"path": "res://addons/com.heroiclabs.nakama/client/NakamaClient.gd"
+}, {
+"base": "Reference",
+"class": "NakamaException",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/utils/NakamaException.gd"
+}, {
+"base": "Node",
+"class": "NakamaHTTPAdapter",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/client/NakamaHTTPAdapter.gd"
+}, {
+"base": "Reference",
+"class": "NakamaLogger",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/utils/NakamaLogger.gd"
+}, {
+"base": "NakamaAsyncResult",
+"class": "NakamaRTAPI",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaRTAPI.gd"
+}, {
+"base": "Reference",
+"class": "NakamaRTMessage",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaRTMessage.gd"
+}, {
+"base": "Reference",
+"class": "NakamaSerializer",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/utils/NakamaSerializer.gd"
+}, {
+"base": "NakamaAsyncResult",
+"class": "NakamaSession",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaSession.gd"
+}, {
+"base": "Reference",
+"class": "NakamaSocket",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/socket/NakamaSocket.gd"
+}, {
+"base": "Node",
+"class": "NakamaSocketAdapter",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/socket/NakamaSocketAdapter.gd"
+}, {
+"base": "Reference",
+"class": "NakamaStorageObjectId",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaStorageObjectId.gd"
+}, {
+"base": "Reference",
+"class": "NakamaWriteStorageObject",
+"language": "GDScript",
+"path": "res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gd"
 } ]
 _global_script_class_icons={
-"CorridorResource": "",
-"RoomResource": "",
-"ShipResource": ""
+"NakamaAPI": "",
+"NakamaAsyncResult": "",
+"NakamaClient": "",
+"NakamaException": "",
+"NakamaHTTPAdapter": "",
+"NakamaLogger": "",
+"NakamaRTAPI": "",
+"NakamaRTMessage": "",
+"NakamaSerializer": "",
+"NakamaSession": "",
+"NakamaSocket": "",
+"NakamaSocketAdapter": "",
+"NakamaStorageObjectId": "",
+"NakamaWriteStorageObject": ""
 }
 
 [application]
@@ -38,13 +104,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Nakama="res://addons/com.heroiclabs.nakama/Nakama.gd"
 Store="*res://src/redux/store.gd"
 ActionTypes="*res://src/redux/action_types.gd"
 Actions="*res://src/redux/actions.gd"
 Reducers="*res://src/redux/reducers.gd"
 DrawLine3d="*res://src/dev/draw_line_3d.gd"
-Main="*res://src/main.gd"
-GameManager="*res://src/game_manager.gd"
+Server="*res://src/server/server.gd"
 
 [debug]
 
@@ -52,7 +118,11 @@ gdscript/warnings/return_value_discarded=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray(  )
+
+[gdnative]
+
+singletons=[  ]
 
 [input]
 
@@ -65,4 +135,3 @@ select={
 [rendering]
 
 quality/filters/msaa=4
-environment/default_environment="res://default_env.tres"

@@ -39,11 +39,14 @@ func dispatch(action):
 			_state[name] = next_state
 			emit_signal("state_changed", name, next_state)
 
-func rpc_dispatch(action):
-	rpc("_rpc_dispatch", action)
-
-remotesync func _rpc_dispatch(action):
-	dispatch(action)
+func state_update(name, next_state):
+	var state = _state[name]
+	if next_state == null:
+		_state.erase(name)
+		emit_signal("state_changed", name, null)
+	elif state != next_state:
+		_state[name] = next_state
+		emit_signal("state_changed", name, next_state)
 
 func get_state():
 	return _state
@@ -55,3 +58,4 @@ func shallow_merge(src_dict, dest_dict):
 	for i in src_dict.keys():
 		dest_dict[i] = src_dict[i]
 	return dest_dict
+
