@@ -15,4 +15,4 @@ func _init():
 	Store.dispatch(Actions.gui_set_name("Test Host"))
 	Store.dispatch(Actions.player_connected(get_network_unique_id(), "Test Host"))
 
-	print("Test Server >> Ready for connections!")
+	change_scene("res://test/network/scene.tscn")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://test/network/scene.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.29233
+margin_right = 1.29236
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -149.0
+margin_top = -22.0
+margin_right = 149.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadShip" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 298.0
+margin_bottom = 24.0
+
+[node name="Button" type="Button" parent="VBoxContainer/LoadShip"]
+margin_right = 73.0
+margin_bottom = 24.0
+text = "Load Ship"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/LoadShip"]
+margin_left = 77.0
+margin_right = 298.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="SpawnEntity" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 298.0
+margin_bottom = 52.0
+
+[node name="Button" type="Button" parent="VBoxContainer/SpawnEntity"]
+margin_right = 92.0
+margin_bottom = 24.0
+text = "Spawn Entity"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/SpawnEntity"]
+margin_left = 96.0
+margin_right = 298.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+[connection signal="pressed" from="VBoxContainer/LoadShip/Button" to="." method="_on_LoadShip_pressed"]
+[connection signal="pressed" from="VBoxContainer/SpawnEntity/Button" to="." method="_on_SpawnEntity_pressed"]
