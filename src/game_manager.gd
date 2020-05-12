@@ -12,19 +12,16 @@ const COLORS = [
 	Color8(255, 89, 94),
 ]
 
-var player: Player
+var players := {}
 var ship: Ship
 var entities := []
 
-func create_player():
-	rpc("_remote_create_player")
-
-remotesync func _remote_create_player():
-	var peer_id = get_tree().get_network_unique_id()
-	player = Player.new()
-	player.name = str(peer_id)
-	player.set_network_master(peer_id)
-	get_tree().get_root().add_child(player)
+func create_player(id: int):
+	var new_player = Player.new()
+	new_player.name = str(id)
+	new_player.set_network_master(id)
+	get_tree().get_root().add_child(new_player)
+	players[id] = new_player
 
 func load_ship(resource: String) -> Ship:
 	var scene = load(resource)

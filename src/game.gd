@@ -20,8 +20,8 @@ func _on_entities_changed(state, prev_state):
 					continue
 				# entity spawned
 				var new_entity = GameManager.spawn_entity()
-				if state[id].controller == get_tree().get_network_unique_id():
-					GameManager.player.controlled_entity = id
+				print(GameManager.players)
+				GameManager.players[state[id].controller].controlled_entity = id
 				new_entity.global_transform.origin = (
 					GameManager.ship.get_rooms()[state[id].room].global_transform.origin)
 
@@ -41,14 +41,10 @@ func _on_entities_changed(state, prev_state):
 				GameManager.ship.get_rooms()[entity.room].global_transform.origin)
 
 func prepare_game():
-	GameManager.create_player()
-
-	Store.dispatch(Actions.ship_load("res://default_ship.tscn"))
+	Store.rpc_dispatch(Actions.ship_load("res://default_ship.tscn"))
 	
 	for player in Store.get_state().players.values():
-		Store.dispatch(Actions.entity_spawn(player.id))
-
-	start_game()
-
-func start_game():
-	pass
+		GameManager.create_player(player.id)
+		# Store.rpc_dispatch(Actions.entity_spawn(player.id))
+	
+	print(GameManager.players)

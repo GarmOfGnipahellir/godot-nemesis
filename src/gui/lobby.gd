@@ -22,9 +22,12 @@ func _remove_player_entry(id: int):
 	_player_entries.erase(id)
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://scenes/default_scene.tscn")
+	rpc("load_game_scene")
 
 func _on_CancelButton_pressed():
 	Store.dispatch(Actions.player_disconnected(get_tree().get_network_unique_id()))
 	get_tree().network_peer = null
 	get_tree().change_scene("res://scenes/main_menu.tscn")
+
+remotesync func load_game_scene():
+	get_tree().change_scene("res://scenes/default_scene.tscn")
