@@ -4,11 +4,11 @@ extends Spatial
 const Player = preload("player.gd")
 const Entity = preload("entity.gd")
 const COLORS = [
-	Color8(25, 130, 196),
-	Color8(106, 76, 147),
-	Color8(138, 201, 38),
-	Color8(255, 202, 58),
+	Color8(74, 168, 214),
+	Color8(161, 217, 61),
 	Color8(255, 89, 94),
+	Color8(255, 216, 72),
+	Color8(232, 233, 235),
 ]
 
 var _players := {}
@@ -72,6 +72,7 @@ func _entity_spawn(id: int):
 	_players[state.controller].controlled_entity = id
 	var entity = Entity.new()
 	entity.color = COLORS[len(_entities)]
+	entity.controller = state.controller
 	add_child(entity)
 	_entities[id] = entity
 

@@ -24,7 +24,7 @@ func get_corridors() -> Array:
 
 func _process(_dt: float):
 	for room in get_rooms():
-		DrawLine3d.DrawCube(room.global_transform.origin, 0.2, Color(1, 1, 1))
+		DrawLine3d.DrawCube(room.global_transform.origin, 0.2, Color(1, 1, 1, 0.2))
 	
 	for corridor in get_corridors():
 		for room1_node_path in corridor.connected_rooms:
@@ -32,4 +32,4 @@ func _process(_dt: float):
 			for room2_node_path in corridor.connected_rooms:
 				var room2 = corridor.get_node(room2_node_path)
 				if room1 != room2:
-					DrawLine3d.DrawLine(room1.global_transform.origin, room2.global_transform.origin, Color(1, 1, 1))
+					DrawLine3d.DrawLine(room1.global_transform.origin, room2.global_transform.origin, Color(1, 1, 1, 0.2))
