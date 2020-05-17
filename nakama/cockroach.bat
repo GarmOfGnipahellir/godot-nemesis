@@ -1,1 +1,0 @@
-.\bin\cockroach.exe start --insecure --store=path=./cdb-store1/
