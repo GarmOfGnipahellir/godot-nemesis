@@ -7,4 +7,6 @@
 *.translation
 
 # Project specific
-build/
+build[s]/
+__pycache__/
+.doit.db.*
