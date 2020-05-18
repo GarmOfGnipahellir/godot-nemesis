@@ -100,17 +100,20 @@ _global_script_class_icons={
 
 config/name="Nemesis"
 run/main_scene="res://scenes/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Nemesis"
 config/icon="res://icon.png"
-config/version="0.1.1"
+config/version="0.1.2"
 
 [autoload]
 
 Nakama="res://addons/com.heroiclabs.nakama/Nakama.gd"
+Logger="*res://src/util/logger.gd"
 Store="*res://src/redux/store.gd"
 ActionTypes="*res://src/redux/action_types.gd"
 Actions="*res://src/redux/actions.gd"
 Reducers="*res://src/redux/reducers.gd"
-DrawLine3d="*res://src/dev/draw_line_3d.gd"
+DrawLine3d="*res://src/util/draw_line_3d.gd"
 Server="*res://src/server/server.gd"
 
 [debug]
@@ -132,6 +135,10 @@ select={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [rendering]
 

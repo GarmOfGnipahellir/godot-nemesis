@@ -9,6 +9,8 @@ signal entities_changed(state, prev_state)
 
 const Players = preload("players.gd")
 
+var logger = Logger.get_logger("server.gd")
+
 var _prev_state
 var _local_player_name
 var _players: Players
@@ -31,13 +33,14 @@ func _tree_ready():
 	add_child(_players)
 
 func _on_store_changed(name, current):
+	logger.start("_on_store_changed()")
+
 	if get_tree().network_peer and get_tree().is_network_server():
 		rpc("_remotesync_state_update", name, current)
 	
 	var previous = _prev_state[name]
 
-	print(name, ": previous -> ", previous)
-	print(name, ": current  -> ", current, "\n")
+	logger.info("\n  previous -> %s: %s\n  current  -> %s: %s" % [name, previous, name, current])
 	
 	emit_signal("%s_changed" % [name], current, previous)
 
@@ -81,7 +84,6 @@ func _on_connection_succeeded():
 	_players.register_self(_local_player_name)
 
 func start_load_game():
-	print("start loading game")
 	rpc("_remotesync_start_load_game")
 
 remotesync func _remotesync_start_load_game():
