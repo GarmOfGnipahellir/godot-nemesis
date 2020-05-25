@@ -1,0 +1,32 @@
+language: python
+
+env:
+    - GODOT_VERSION=3.2.1
+
+install:
+    - pip install doit
+    - wget -q https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
+    - unzip Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
+    - sudo mv Godot_v${GODOT_VERSION}-stable_linux_headless.64 /usr/local/bin/godot
+    - sudo chmod +x /usr/local/bin/godot
+    - wget -q https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+    - mkdir -p ~/.local/share/godot/templates
+    - unzip Godot_v${GODOT_VERSION}-stable_export_templates.tpz -d ~/.local/share/godot/templates
+    - mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+
+cache:
+    directories:
+        - .import/
+
+script:
+    - doit test
+    - doit prepare_deploy
+
+deploy:
+  provider: releases
+  api_key: "${GITHUB_TOKEN}"
+  file_glob: true
+  file: builds/godot-nemesis_*.zip
+  skip_cleanup: true
+  on:
+    tags: true

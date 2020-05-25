@@ -26,6 +26,14 @@ def task_build():
     }
 
 
+def task_test():
+    """Runs the GUT tests"""
+
+    return {
+        "actions": ["godot -s addons/gut/gut_cmdln.gd"],
+    }
+
+
 def task_prepare_deploy():
     """
     Creates a zip archive with the of the latest build.  
