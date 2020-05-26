@@ -1,10 +1,24 @@
 extends Node
 
-func gui_set_name(name: String):
+
+func game_start():
 	return {
-		"type": ActionTypes.GUI_SET_NAME,
-		"name": name,
+		"type": ActionTypes.GAME_START,
 	}
+
+
+func round_start():
+	return {
+		"type": ActionTypes.ROUND_START,
+	}
+
+
+func round_end(did_pass: bool):
+	return {
+		"type": ActionTypes.ROUND_END,
+		"did_pass": did_pass,
+	}
+
 
 func player_connected(rpc_id: int, name: String):
 	return {
@@ -13,11 +27,13 @@ func player_connected(rpc_id: int, name: String):
 		"name": name,
 	}
 
+
 func player_disconnected(rpc_id: int):
 	return {
 		"type": ActionTypes.PLAYER_DISCONNECTED,
 		"rpc_id": rpc_id,
 	}
+
 
 func ship_load(resource: String):
 	return {
@@ -25,11 +41,13 @@ func ship_load(resource: String):
 		"resource": resource,
 	}
 
+
 func entity_spawn(controller: int):
 	return {
 		"type": ActionTypes.ENTITY_SPAWN,
 		"controller": controller,
 	}
+
 
 func entity_move(entity: int, room: int):
 	return {

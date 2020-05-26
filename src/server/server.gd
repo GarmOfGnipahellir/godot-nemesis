@@ -1,6 +1,8 @@
 extends Node
 
 #warning-ignore: unused_signal
+signal game_changed(state, prev_state)
+#warning-ignore: unused_signal
 signal players_changed(state, prev_state)
 #warning-ignore: unused_signal
 signal ship_changed(state, prev_state)
@@ -21,6 +23,7 @@ func _ready():
 func _tree_ready():
 	# TODO should add a way to reset store for tests
 	Store.create([
+		{"name": "game", "instance": Reducers},
 		{"name": "players", "instance": Reducers},
 		{"name": "ship", "instance": Reducers},
 		{"name": "entities", "instance": Reducers},
@@ -101,6 +104,8 @@ var _players_done := []
 func _done_load_game(id: int):
 	_players_done.push_back(id)
 	if len(_players_done) == len(Store.get_state().players):
+		Server.dispatch(Actions.game_start())
 		Server.dispatch(Actions.ship_load("res://default_ship.tscn"))
 		for player in Store.get_state().players.values():
 			Server.dispatch(Actions.entity_spawn(player.id))
+		Server.dispatch(Actions.round_start())

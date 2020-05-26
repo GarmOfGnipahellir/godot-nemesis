@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/world/world.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+func _ready():
+	disabled = !is_current_local()
+	Server.connect(\"game_changed\", self, \"_on_game_changed\")
+
+func _on_Button_pressed():
+	Server.dispatch(Actions.round_end(true))
+	Server.dispatch(Actions.round_start())
+	
+func _on_game_changed(_state, _prev_state):
+	disabled = !is_current_local()
+	
+func is_current_local() -> bool:
+	var state = Store.get_state()
+	return state.players.keys()[state.game.current_player] == get_tree().get_network_unique_id()
+"
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
@@ -27,6 +47,8 @@ margin_top = -60.239
 margin_right = -10.1574
 margin_bottom = -10.239
 text = "PASS"
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="HUD/Button" to="HUD/Button" method="_on_Button_pressed"]
