@@ -7,7 +7,7 @@
 # general
 *.md text
 LICENSE text
-*.cfg text
+*.cfg text eol=lf
 *.svg text
 # godot specific
 *.gd text eol=lf
